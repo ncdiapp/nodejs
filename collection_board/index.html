@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="w-full h-full overflow-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLM Collection Board Editor</title>
+
+    <script src="./lib/jspdf.umd.min.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/fabric.min.js"></script>
+    <script src="./app.js"></script>
+
+    <link rel="stylesheet" href="lib/fontAwesome/font-awesome.css">
+    <link rel="stylesheet" href="dist/styles.css">
+</head>
+
+<body class="w-full h-full box-content overflow-hidden">
+    <nav class="header-bg" style="background-color: #23282d;color:white;min-width: 800px;">
+        <div class="max-w-full mx-auto px-3 sm:px-5 lg:px-5 blockThemBar">
+            <div class="relative flex items-center justify-between h-10">
+                <!-- <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+
+                    <button type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div> -->
+                <div class="flex items-center justify-center sm:items-stretch sm:justify-start">
+                    <div
+                        class="inline-flex items-center justify-center ml-1.5 text-sm leading-4 family-segoeUI-semibold">
+                        PLM Collection Board Editor</div>
+                </div>
+                <div class="mx-auto text-xs">
+                    <div class="flex items-center px-5 ">
+                        <div class="pr-1">Collection Board Size: </div>
+                        <div class="flex px-2 items-center">
+                            <div class="">width</div>
+                            <div class="p-1"><input id="input_canvas_width"
+                                    class="w-12 h-5 p-1 border border-gray-400 rounded-sm text-black" type="tel"
+                                    max="8000"></div>
+                            px
+                        </div>
+                        <div class="flex px-2 items-center">
+                            <div class="">height</div>
+                            <div class="p-1"><input id="input_canvas_height"
+                                    class="w-12 h-5 p-1 border border-gray-400 rounded-sm text-black" type="tel"
+                                    max="8000"></div>
+                            px
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center sm:static sm:inset-auto">
+                    <div class="">
+                        <div class="h-100 flex items-center space-x-2 py-0">
+                            <div
+                                class="relative inline-block text-left btn-group dropdown-container dropdownIconStyles">
+                                <button type="button" data-toggle="dropdown" dropdown-toggle=""
+                                    class="family-segoeUI-semibold inline-flex justify-center w-full leading-4 rounded-sm border border-transparent text-sm font-medium topMenuIemHover px-2 py-1.5"
+                                    aria-current="page" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                    <i class="fa fa-save pr-1"></i> File
+                                    <!-- <svg class="-mr-1 ml-0.5 rotateOpen" width="16" height="16" viewBox="0 0 16 16"
+                                        fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M4.23431 5.83435C4.54673 5.52193 5.05327 5.52193 5.36569 5.83435L8 8.46867L10.6343 5.83435C10.9467 5.52193 11.4533 5.52193 11.7657 5.83435C12.0781 6.14677 12.0781 6.6533 11.7657 6.96572L8.56569 10.1657C8.25327 10.4781 7.74673 10.4781 7.43431 10.1657L4.23431 6.96572C3.9219 6.6533 3.9219 6.14677 4.23431 5.83435Z">
+                                        </path>
+                                    </svg> -->
+                                </button>
+                                <div class="dropdown-menu origin-top-right absolute z-30 right-0 mt-1 w-48 rounded-b dropdownNewBox ring-1 ring-black ring-opacity-5 focus:outline-none bg-white text-black py-2 text-xs"
+                                    style="width: 150px;">
+                                    <div class="py-0" role="none">
+                                        <div class="overflow-auto mr-0.5 custom-dropdown-scroll">
+
+
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200"
+                                                onclick="saveToPDF()">
+                                                Download To PDF
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200"
+                                                onclick="saveToJPEG()">
+                                                Download To JPEG
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200"
+                                                onclick="saveToPNG()">
+                                                Download To PNG
+                                            </a>
+                                            <div class="w-full px-1 py-1">
+                                                <div class="border border-b-0 border-gray-200"></div>
+                                            </div>
+                                            <a
+                                                class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop">
+                                                Import Setting
+                                            </a>
+                                            <a
+                                                class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop">
+                                                Export Setting
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative inline-block text-left btn-group dropdown-container dropdownIconStyles">
+                                <button type="button" data-toggle="dropdown" dropdown-toggle=""
+                                    class="family-segoeUI-semibold inline-flex justify-center w-full leading-4 rounded-sm border border-transparent text-sm font-medium topMenuIemHover px-2 py-1.5"
+                                    aria-current="page" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                    <i class="fa fa-gear pr-1"></i> Tools
+                                    <!-- <svg class="-mr-1 ml-0.5 rotateOpen" width="16" height="16" viewBox="0 0 16 16"
+                                        fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M4.23431 5.83435C4.54673 5.52193 5.05327 5.52193 5.36569 5.83435L8 8.46867L10.6343 5.83435C10.9467 5.52193 11.4533 5.52193 11.7657 5.83435C12.0781 6.14677 12.0781 6.6533 11.7657 6.96572L8.56569 10.1657C8.25327 10.4781 7.74673 10.4781 7.43431 10.1657L4.23431 6.96572C3.9219 6.6533 3.9219 6.14677 4.23431 5.83435Z">
+                                        </path>
+                                    </svg> -->
+                                </button>
+                                <div class="dropdown-menu origin-top-right absolute z-30 right-0 mt-1 w-48 rounded-b dropdownNewBox ring-1 ring-black ring-opacity-5 focus:outline-none bg-white text-black py-2 text-xs"
+                                    style="width: 200px;">
+                                    <div class="py-0" role="none">
+                                        <div class="overflow-auto mr-0.5 custom-dropdown-scroll">
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200"
+                                                onclick="undo()">
+                                                Undo (Ctrl-Z)
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200"
+                                                onclick="redo()">
+                                                Redo (Ctrl-Y)
+                                            </a>
+                                            <div class="w-full px-1 py-1">
+                                                <div class="border border-b-0 border-gray-200"></div>
+                                            </div>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Flip Vertical
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Flip Horizontal
+                                            </a>
+                                            <div class="w-full px-1 py-1">
+                                                <div class="border border-b-0 border-gray-200"></div>
+                                            </div>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Brightness
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Contract
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Hue
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Blur
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Remove White Background
+                                            </a>
+                                            <a class="block dropNewItems cursor-pointer px-4 py-2 hover:bg-gray-200 text-gray-400 cursor-no-drop"
+                                                onclick="">
+                                                Black White
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a
+                                class="family-segoeUI-semibold cursor-pointer topMenuIemHover px-2 py-1.5 rounded-sm text-sm leading-4 font-medium ">
+                                <i class="fa fa-question-circle pr-1"></i> Help</a>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- <div class="w-full bg-gray-200 flex" style="height: 50px;">
+        <div class="flex items-center h-full px-4 font-semibold" style="width: 300px;">
+            PLM Collection Board Editor
+        </div>
+        <div class="flex-auto"></div>
+        <div class="flex content-end items-center px-10">
+            <button id="undoBtn" class="underline px-5">Undo</button>
+            <button id="redoBtn" class="underline px-5">Redo</button>
+            <button id="savePdfBtn" class="underline px-5">Save to PDF</button>
+            <button id="saveJpegBtn" class="underline  px-5">Save to JPEG</button>
+            <button id="savePngBtn" class="underline  px-5">Save to PNG</button>
+
+            <button id="toggle-ruler" class="hidden px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                Toggle Ruler
+            </button>
+
+        </div>
+    </div> -->
+
+    <div id="subheader" class="w-full h-10 flex text-sm bg-gray-200">
+        <!-- <div class="flex items-center px-5">
+            <div class="pr-1">Canvas: </div>
+            <div class="flex px-2 items-center">
+                <div class="">w</div>
+                <div class="p-1"><input id="input_canvas_width" class="w-12 h-5 p-1 border border-gray-400 rounded-sm" type="tel" max="8000"></div>
+                px
+            </div>
+            <div class="flex px-2 items-center">
+                <div class="">h</div>
+                <div class="p-1"><input id="input_canvas_height" class="w-12 h-5 p-1 border border-gray-400 rounded-sm" type="tel" max="8000"></div>
+                px
+            </div>
+        </div> -->
+        <div class="flex items-center px-5">
+
+            <div class="flex pr-2 items-center">
+
+
+                <button id="text" class="hover:bg-gray-100 w-20 h-8 draggable"
+                    title="Text, drag and drop to design panel" draggable="true">
+                    <i class="fa fa-font"></i> Text
+                </button>
+                <button id="image" class="hover:bg-gray-100 w-20 h-8 draggable"
+                    title="Image, drag and drop to design panel" draggable="true">
+                    <i class="fa fa-file-image-o"></i> Image
+                </button>
+                <button id="rect" class="hover:bg-gray-100 w-20 h-8 draggable"
+                    title="Rectangle, drag and drop to design panel" draggable="true">
+                    <i class="fa fa-square-o"></i> Rectangle
+                </button>
+                <button id="circle" class="hover:bg-gray-100 w-20 h-8 draggable"
+                    title="Circle, drag and drop to design panel" draggable="true">
+                    <i class="fa fa-circle-thin"></i> Circle
+                </button>
+
+                <div class="px-2">
+                    <div class="flex items-center h-4 border-l border-gray-400 shadow-lg" style="width: 2px;"></div>
+                </div>
+
+                <button class="hover:bg-gray-100 w-20 h-8" title="Undo (Ctrl-X)" onclick="undo()">
+                    <i class="fa fa-undo"></i> Undo
+                </button>
+                <button class="hover:bg-gray-100 w-20 h-8" title="Redo (Ctrl-X)" onclick="redo()">
+                    <i class="fa fa-repeat"></i> Redo
+                </button>
+                <button class="hover:bg-gray-100 w-20 h-8" title="Remove selected object (Delete key)"
+                    onclick="deleteSelectedObject()">
+                    <i class="fa fa-eraser"></i> Remove
+                </button>
+
+            </div>
+
+            <div class="flex px-2 items-center">
+                <!-- <div id="property-update-box" class="flex" style="display: none;">
+                    <div id="text-controls" style="display: none;">
+                        <label for="edit-font-size" class="w-24">Font Size:</label>
+                        <input type="number" id="edit-font-size" name="edit-font-size" value="30" min="1"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black">
+                        <br>
+                        <label for="edit-font-family" class="w-24">Font Family:</label>
+                        <input type="text" id="edit-font-family" name="edit-font-family" value="Arial"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black">
+                        <br>
+                        <label for="edit-font-color" class="w-24">Font Color:</label>
+                        <input type="color" id="edit-font-color" name="edit-font-color" value="#00ff00" class="input_object_Property">
+                        <br>
+                    </div>
+                    <div id="image-controls" style="display: none;">
+                        <label for="edit-image-url" class="w-24">Image URL:</label>
+                        <input type="text" id="edit-image-url" name="edit-bg-image-url"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black">
+                        <br>
+                    </div>
+                    <div id="shape-controls" style="display: none;">
+                        <label for="edit-bg-color" class="w-24">Background Color:</label>
+                        <input type="color" id="edit-bg-color" name="edit-bg-color" value="#ff0000" class="input_object_Property">
+                        <br>
+                    </div>
+                    <div class="w-full py-4">
+                        <button id="btn-update-properties" class="w-full bg-gray-100">Apply</button>
+                    </div>
+
+                </div> -->
+            </div>
+        </div>
+        <div class="flex-auto flex">
+
+        </div>
+
+        <div>
+
+        </div>
+    </div>
+
+    <div class="w-full flex" style="height: calc(100% - 80px);">
+        <!-- <div class="h-full bg-gray-300" style="width: 200px;">
+            <div class="flex flex-col items-center">
+                <div id="rect" class="draggable bg-red-500 w-full h-10 m-1 px-2 flex items-center" draggable="true">
+                    Rectangle</div>
+                <div id="circle" class="draggable bg-blue-500 w-full h-10 m-1 px-2 flex items-center" draggable="true">
+                    Circle</div>
+                <div id="image" class="draggable bg-yellow-500 w-full h-10 m-1 px-2 flex items-center" draggable="true">
+                    Image</div>
+                <div id="text" class="draggable bg-green-500 w-full h-10 m-1 px-2 flex items-center" draggable="true">
+                    Text</div>
+            </div>
+        </div> -->
+        <div class="h-full relative bg-gray-200 w-full">
+            <div id="canvas-out-container" class="flex flex-col p-0 overflow-auto w-full h-full">
+                <div class="h-8 flex bg-white">
+                    <div class="w-8 h-8 flex-shrink-0"></div>
+                    <div class="w-2 h-8 flex-shrink-0"></div>
+                    <div id="ruler-horizontal" style="font-size: 11px;"
+                        class="h-8 flex items-end text-xs bg-white transition-all duration-300">
+                    </div>
+                </div>
+                <div class="flex" style="">
+                    <div class="w-8 ">
+                        <div class="h-2 w-8 bg-white">
+                        </div>
+                        <div id="ruler-vertical" style="font-size: 11px;"
+                            class="w-8 flex flex-col text-xs items-end bg-white transition-all duration-300">
+                        </div>
+                    </div>
+                    <div id="canvas-container" class="flex p-2 bg-gray-200" style="">
+                        <canvas id="canvas" class=""></canvas>
+                    </div>
+                </div>
+
+            </div>
+            <div id="property-update-box" class="absolute bg-white border border-gray-200 p-2 text-xs"
+                style="display: none;z-index: 1000;">
+                <div id="text-controls" style="display: none;">
+                   
+                    <div class="flex items-center py-1">
+                        <label for="edit-font-family" class="w-20">Font Family:</label>
+                        <!-- <input type="text" id="edit-font-family" name="edit-font-family" value="Arial"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black"> -->
+                        <select id="edit-font-family" name="edit-font-family"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black flex-auto">
+                            <option value="Arial">Arial</option>
+                            <!-- <option value="Helvetica">Helvetica</option> -->
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Courier New">Courier New</option>
+                            <option value="Verdana">Verdana</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                            <option value="Trebuchet MS">Trebuchet MS</option>
+                            <option value="Impact">Impact</option>
+                            <option value="Brush Script MT">Brush Script MT</option>
+                            <!-- <option value="Monaco">Monaco</option> -->
+                        </select>
+                    </div>
+                    <div class="flex items-center py-1">
+                        <label for="edit-font-size" class="w-20">Font Size:</label>
+                        <input type="number" id="edit-font-size" name="edit-font-size" value="30" min="1"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black">
+                    </div>
+                    <div class="flex items-center py-1">
+                        <label for="edit-font-family" class="w-20">Font Family:</label>
+                        <!-- <input type="text" id="edit-font-family" name="edit-font-family" value="Arial"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black"> -->
+                        <select id="edit-font-family" name="edit-font-family"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black">
+                            <option value="Arial">Arial</option>
+                            <!-- <option value="Helvetica">Helvetica</option> -->
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Courier New">Courier New</option>
+                            <option value="Verdana">Verdana</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                            <option value="Trebuchet MS">Trebuchet MS</option>
+                            <option value="Impact">Impact</option>
+                            <option value="Brush Script MT">Brush Script MT</option>
+                            <!-- <option value="Monaco">Monaco</option> -->
+                        </select>
+                    </div>
+                    <div class="flex items-center py-1">
+                        <label for="edit-font-color" class="w-20">Font Color:</label>
+                        <input type="color" id="edit-font-color" name="edit-font-color" value="#00ff00"
+                            class="input_object_Property">
+                    </div>
+                </div>
+                <div id="image-controls" style="display: none;">
+                    <div class="flex items-center py-1">
+                        <label for="edit-image-url" class="w-20">Image URL:</label>
+                        <input type="text" id="edit-image-url" name="edit-bg-image-url"
+                            class="input_object_Property p-1 border border-gray-400 rounded-sm text-black">
+                    </div>
+                </div>
+                <div id="shape-controls" style="display: none;">
+                    <div class="flex items-center py-1">
+                        <label for="edit-bg-color" class="w-28">Background Color:</label>
+                        <input type="color" id="edit-bg-color" name="edit-bg-color" value="#ff0000"
+                            class="input_object_Property">
+                    </div>
+                </div>
+                <div class="w-full pt-4">
+                    <button id="btn-update-properties" class="w-full bg-gray-100 h-8 hover:bg-gray-200">Apply</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full flex bg-white" style="height: 25px;">
+
+    </div>
+
+</body>
+
+</html>

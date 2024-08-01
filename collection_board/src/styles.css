@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'SegoeUI';
+    src: url('../lib/fonts/segoe-ui/SegoeUI.eot');
+    src: url('../lib/fonts/segoe-ui/SegoeUI.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/segoe-ui/SegoeUI.woff2') format('woff2'),
+        url('../lib/fonts/segoe-ui/SegoeUI.woff') format('woff'),
+        url('../lib/fonts/segoe-ui/SegoeUI.ttf') format('truetype'),
+        url('../lib/fonts/segoe-ui/SegoeUI.svg#SegoeUI') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SegoeUI-Semibold';
+    src: url('../lib/fonts/segoe-ui-semibold/SegoeUI-Semibold.eot');
+    src: url('../lib/fonts/segoe-ui-semibold/SegoeUI-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/segoe-ui-semibold/SegoeUI-Semibold.woff2') format('woff2'),
+        url('../lib/fonts/segoe-ui-semibold/SegoeUI-Semibold.woff') format('woff'),
+        url('../lib/fonts/segoe-ui-semibold/SegoeUI-Semibold.ttf') format('truetype'),
+        url('../lib/fonts/segoe-ui-semibold/SegoeUI-Semibold.svg#SegoeUI-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Segoe UI Mono W10 Regular";
+    src: url("../lib/fonts/segoe-ui-mono/71b00e98168f1a2da1b6c5748587e433.eot");
+    src: url("../lib/fonts/segoe-ui-mono/71b00e98168f1a2da1b6c5748587e433.eot?#iefix")format("embedded-opentype"),
+    url("../lib/fonts/segoe-ui-mono/71b00e98168f1a2da1b6c5748587e433.woff2")format("woff2"),
+    url("../lib/fonts/segoe-ui-mono/71b00e98168f1a2da1b6c5748587e433.woff")format("woff"),
+    url("../lib/fonts/segoe-ui-mono/71b00e98168f1a2da1b6c5748587e433.ttf")format("truetype"),
+    url("../lib/fonts/segoe-ui-mono/71b00e98168f1a2da1b6c5748587e433.svg#Segoe UI Mono W10 Regular")format("svg");
+}
+/* canadian-aboriginal */
+@font-face {
+    font-family: Radio-Canada;
+    src: url('../lib/fonts/radio-canada/RadioCanada-Regular.eot');
+    src: url('../lib/fonts/radio-canada/RadioCanada-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/radio-canada/RadioCanada-Regular.woff2') format('woff2'),
+        url('../lib/fonts/radio-canada/RadioCanada-Regular.woff') format('woff'),
+        url('../lib/fonts/radio-canada/RadioCanada-Regular.ttf') format('truetype'),
+        url('../lib/fonts/radio-canada/RadioCanada-Regular.svg#RadioCanada-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/* canadian-aboriginal SemiBold*/
+@font-face {
+    font-family: Radio-Canada-SemiBold;
+    src: url('../lib/fonts/radio-canada/RadioCanada-SemiBold.eot');
+    src: url('../lib/fonts/radio-canada/RadioCanada-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/radio-canada/RadioCanada-SemiBold.woff2') format('woff2'),
+        url('../lib/fonts/radio-canada/RadioCanada-SemiBold.woff') format('woff'),
+        url('../lib/fonts/radio-canada/RadioCanada-SemiBold.ttf') format('truetype'),
+        url('../lib/fonts/radio-canada/RadioCanada-SemiBold.svg#RadioCanada-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+/* Caveat -SemiBold*/
+@font-face {
+    font-family: Caveat-SemiBold;/*change blod font */
+    src: url('../lib/fonts/caveat/Caveat-Regular.eot');
+    src: url('../lib/fonts/caveat/Caveat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/caveat/Caveat-Regular.woff2') format('woff2'),
+        url('../lib/fonts/caveat/Caveat-Regular.woff') format('woff'),
+        url('../lib/fonts/caveat/Caveat-Regular.ttf') format('truetype'),
+        url('../lib/fonts/caveat/Caveat-Regular.svg#Caveat-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/* Caveat*/
+@font-face {
+    font-family: Caveat;
+    src: url('../lib/fonts/caveat/Caveat-SemiBold.eot');
+    src: url('../lib/fonts/caveat/Caveat-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/caveat/Caveat-SemiBold.woff2') format('woff2'),
+        url('../lib/fonts/caveat/Caveat-SemiBold.woff') format('woff'),
+        url('../lib/fonts/caveat/Caveat-SemiBold.ttf') format('truetype'),
+        url('../lib/fonts/caveat/Caveat-SemiBold.svg#Caveat-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+/*Roboto-SemiBold*/
+@font-face {
+    font-family: Roboto-SemiBold;
+    src: url('../lib/fonts/roboto/Roboto-Medium.eot');
+    src: url('../lib/fonts/roboto/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/roboto/Roboto-Medium.woff2') format('woff2'),
+        url('../lib/fonts/roboto/Roboto-Medium.woff') format('woff'),
+        url('../lib/fonts/roboto/Roboto-Medium.ttf') format('truetype'),
+        url('../lib/fonts/roboto/Roboto-Medium.svg#Roboto-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+/*Roboto*/
+@font-face {
+    font-family: Roboto;
+    src: url('../lib/fonts/roboto/Roboto-Regular.eot');
+    src: url('../lib/fonts/roboto/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/roboto/Roboto-Regular.woff2') format('woff2'),
+        url('../lib/fonts/roboto/Roboto-Regular.woff') format('woff'),
+        url('../lib/fonts/roboto/Roboto-Regular.ttf') format('truetype'),
+        url('../lib/fonts/roboto/Roboto-Regular.svg#Roboto-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/*Teko*/
+@font-face {
+    font-family: Teko; /* check Medium*/
+    src: url('../lib/fonts/teko/Teko-Regular.eot');
+    src: url('../lib/fonts/teko/Teko-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/teko/Teko-Regular.woff2') format('woff2'),
+        url('../lib/fonts/teko/Teko-Regular.woff') format('woff'),
+        url('../lib/fonts/teko/Teko-Regular.ttf') format('truetype'),
+        url('../lib/fonts/teko/Teko-Regular.svg#Teko-Regular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+/*Teko-SemiBold*/
+@font-face {
+    font-family: Teko-SemiBold;
+    src: url('../lib/fonts/teko/Teko-SemiBold.eot');
+    src: url('../lib/fonts/teko/Teko-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/teko/Teko-SemiBold.woff2') format('woff2'),
+        url('../lib/fonts/teko/../lib/fonts/teko/Teko-SemiBold.woff') format('woff'),
+        url('../lib/fonts/teko/Teko-SemiBold.ttf') format('truetype'),
+        url('../lib/fonts/teko/Teko-SemiBold.svg#Teko-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+/*Lato*/
+@font-face {
+    font-family: Lato;
+    src: url('../lib/fonts/lato/Lato-Regular.eot');
+    src: url('../lib/fonts/lato/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/lato/Lato-Regular.woff2') format('woff2'),
+        url('../lib/fonts/lato/Lato-Regular.woff') format('woff'),
+        url('../lib/fonts/lato/Lato-Regular.ttf') format('truetype'),
+        url('../lib/fonts/lato/Lato-Regular.svg#Lato-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/*Lato-SemiBold*/
+@font-face {
+    font-family: Lato-SemiBold;
+    src: url('../lib/fonts/lato/Lato-Bold.eot');
+    src: url('../lib/fonts/lato/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../lib/fonts/lato/Lato-Bold.woff2') format('woff2'),
+        url('../lib/fonts/lato/Lato-Bold.woff') format('woff'),
+        url('../lib/fonts/lato/Lato-Bold.ttf') format('truetype'),
+        url('../lib/fonts/lato/Lato-Bold.svg#Lato-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+.draggable {       
+    cursor: grab;    
+    user-select: none;
+}
+
+.family-segoeUI-semibold {
+    font-family: SegoeUI-Semibold;
+}
+
+/* Custom dropdown styles */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-container .dropdown-menu {
+    display: none; /* Initially hidden */
+  }
+
+  .dropdown-container:hover .dropdown-menu,
+  .dropdown-container:focus-within .dropdown-menu,
+  .dropdown-container:active .dropdown-menu {
+    display: block; /* Show the dropdown on hover, focus, or click */
+  }
+
+  /* Custom scrollbar for dropdown */
+  .custom-dropdown-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-dropdown-scroll::-webkit-scrollbar-thumb {
+    background-color: #d1d5db; /* Tailwind's gray-300 */
+    border-radius: 10px;
+  }
+
+  .custom-dropdown-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af; /* Tailwind's gray-400 */
+  }
+
+  /* Animation for dropdown */
+  .dropdown-container .dropdown-menu {
+    animation: dropdownAnimation 0.3s ease-in-out;
+  }
+
+  @keyframes dropdownAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Rotate SVG on open */
+  .rotateOpen {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .dropdown-container:hover .rotateOpen,
+  .dropdown-container:focus-within .rotateOpen {
+    transform: rotate(180deg);
+  }
