@@ -25,7 +25,39 @@ app.get('/api/v1/users', async (req, res) =>{
         //   { id: 2, name: "Jane Doe" },
         // ];
 
-        const [users] = await pool.query("select * from user limit 10")
+        //const [users] = await pool.query("select * from user limit 10")
+
+        const [users] = await pool.query(`
+          SELECT
+            cemeteries_top100Id,
+            cemetery_id,
+            name,
+            contact,
+            address1,
+            address2,
+            address3,
+            city,
+            governing_district,
+            governing_district_cd,
+            url,
+            phone_number,
+            email,
+            lat,
+            long,
+            ncp,
+            vlm_active,
+            image_id,
+            created_date,
+            updated_date,
+            deleted_date,
+            postal_area,
+            country,
+            country_cd,
+            cemetery_type_indicator,
+            OriginalFile
+          FROM chalicedb.cemeteries_top100
+        `);
+        
 
         return res.status(200).json({ users });
       } catch (error) {
