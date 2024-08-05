@@ -31,7 +31,7 @@ app.get('/api/v1/users', async (req, res) =>{
           SELECT
             cemeteries_top100Id,
             cemetery_id,
-            name,
+            \`name\`,
             contact,
             address1,
             address2,
@@ -43,7 +43,7 @@ app.get('/api/v1/users', async (req, res) =>{
             phone_number,
             email,
             lat,
-            long,
+            \`long\`,
             ncp,
             vlm_active,
             image_id,
