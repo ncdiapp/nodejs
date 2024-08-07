@@ -1,3 +1,7 @@
+Main host for public is "client", on port 3000 by default.
+internal api call host is "server", on port 5000 by defaut.
+
+
 
 *** Method A. Install expressjs reverce proxy on nextjs app (.ts)
 

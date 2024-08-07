@@ -2,32 +2,172 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  --1dp: 0px 1px 2px 0px rgba(19, 30, 41, 0.04);
+  --2dp: 0px 2px 4px 0px rgba(19, 30, 41, 0.04);
+  --3dp: 0px 4px 8px 0px rgba(19, 30, 41, 0.08);
+  --4dp: 0px 8px 16px 0px rgba(19, 30, 41, 0.16);
+  --body-font-family: "Nunito", Helvetica;
+  --body-font-size: 16px;
+  --body-font-style: normal;
+  --body-font-weight: 400;
+  --body-letter-spacing: 0px;
+  --body-line-height: 24px;
+  --body-mobile-font-family: "Nunito", Helvetica;
+  --body-mobile-font-size: 14px;
+  --body-mobile-font-style: normal;
+  --body-mobile-font-weight: 400;
+  --body-mobile-letter-spacing: 0px;
+  --body-mobile-line-height: 20px;
+  --brandaltblue: rgba(9, 77, 146, 1);
+  --brandaltgreen: rgba(87, 167, 115, 1);
+  --brandaltpink: rgba(254, 109, 115, 1);
+  --brandaltyellow: rgba(245, 203, 92, 1);
+  --brandprimary: rgba(49, 182, 217, 1);
+  --brandprimary-darker: rgba(35, 145, 171, 1);
+  --brandsecondary: rgba(33, 33, 33, 1);
+  --brandsecondary-lighter: rgba(36, 56, 77, 1);
+  --button-font-family: "Nunito", Helvetica;
+  --button-font-size: 16px;
+  --button-font-style: normal;
+  --button-font-weight: 600;
+  --button-letter-spacing: 0px;
+  --button-line-height: 24px;
+  --button-mobile-font-family: "Nunito", Helvetica;
+  --button-mobile-font-size: 14px;
+  --button-mobile-font-style: normal;
+  --button-mobile-font-weight: 600;
+  --button-mobile-letter-spacing: 0px;
+  --button-mobile-line-height: 20px;
+  --caption-font-family: "Nunito", Helvetica;
+  --caption-font-size: 12px;
+  --caption-font-style: normal;
+  --caption-font-weight: 400;
+  --caption-letter-spacing: 0px;
+  --caption-line-height: 16px;
+  --grey-100: rgba(241, 243, 245, 1);
+  --grey-200: rgba(233, 236, 239, 1);
+  --grey-300: rgba(221, 226, 231, 1);
+  --grey-400: rgba(206, 212, 218, 1);
+  --grey-50: rgba(248, 249, 250, 1);
+  --grey-500: rgba(171, 181, 191, 1);
+  --grey-600: rgba(132, 142, 152, 1);
+  --grey-700: rgba(71, 80, 89, 1);
+  --h1-font-family: "Lora", Helvetica;
+  --h1-font-size: 34px;
+  --h1-font-style: normal;
+  --h1-font-weight: 500;
+  --h1-h4-font-family: "Nunito", Helvetica;
+  --h1-h4-font-size: 16px;
+  --h1-h4-font-style: normal;
+  --h1-h4-font-weight: 600;
+  --h1-h4-letter-spacing: 0px;
+  --h1-h4-line-height: 24px;
+  --h1-letter-spacing: 0px;
+  --h1-line-height: 52px;
+  --h1-subtitle-font-family: "Lora", Helvetica;
+  --h1-subtitle-font-size: 20px;
+  --h1-subtitle-font-style: normal;
+  --h1-subtitle-font-weight: 400;
+  --h1-subtitle-letter-spacing: 0px;
+  --h1-subtitle-line-height: 30px;
+  --h2-font-family: "Nunito", Helvetica;
+  --h2-font-size: 24px;
+  --h2-font-style: normal;
+  --h2-font-weight: 700;
+  --h2-letter-spacing: 0px;
+  --h2-line-height: 36px;
+  --h3-font-family: "Nunito", Helvetica;
+  --h3-font-size: 18px;
+  --h3-font-style: normal;
+  --h3-font-weight: 600;
+  --h3-letter-spacing: 0px;
+  --h3-line-height: 28px;
+  --h5-font-family: "Nunito", Helvetica;
+  --h5-font-size: 14px;
+  --h5-font-style: normal;
+  --h5-font-weight: 600;
+  --h5-letter-spacing: 0px;
+  --h5-line-height: 20px;
+  --KIOSK-body-font-family: "Source Sans Pro", Helvetica;
+  --KIOSK-body-font-size: 32px;
+  --KIOSK-body-font-style: normal;
+  --KIOSK-body-font-weight: 400;
+  --KIOSK-body-letter-spacing: 0px;
+  --KIOSK-body-line-height: 48px;
+  --kiosk-brand-primary-darkest: rgba(17, 46, 81, 1);
+  --kiosk-gold: rgba(253, 184, 30, 1);
+  --KIOSK-h1-font-family: "Source Sans Pro", Helvetica;
+  --KIOSK-h1-font-size: 48px;
+  --KIOSK-h1-font-style: normal;
+  --KIOSK-h1-font-weight: 700;
+  --KIOSK-h1-letter-spacing: 0px;
+  --KIOSK-h1-line-height: 56px;
+  --KIOSK-h2-font-family: "Source Sans Pro", Helvetica;
+  --KIOSK-h2-font-size: 40px;
+  --KIOSK-h2-font-style: normal;
+  --KIOSK-h2-font-weight: 600;
+  --KIOSK-h2-letter-spacing: 0px;
+  --KIOSK-h2-line-height: 64px;
+  --KIOSK-h3-font-family: "Source Sans Pro", Helvetica;
+  --KIOSK-h3-font-size: 32px;
+  --KIOSK-h3-font-style: normal;
+  --KIOSK-h3-font-weight: 600;
+  --KIOSK-h3-FULL-CAPS-font-family: "Source Sans Pro", Helvetica;
+  --KIOSK-h3-FULL-CAPS-font-size: 32px;
+  --KIOSK-h3-FULL-CAPS-font-style: normal;
+  --KIOSK-h3-FULL-CAPS-font-weight: 600;
+  --KIOSK-h3-FULL-CAPS-letter-spacing: 0.64px;
+  --KIOSK-h3-FULL-CAPS-line-height: 48px;
+  --KIOSK-h3-letter-spacing: 0px;
+  --KIOSK-h3-line-height: 40px;
+  --KIOSK-h4-FULL-CAPS-font-family: "Source Sans Pro", Helvetica;
+  --KIOSK-h4-FULL-CAPS-font-size: 24px;
+  --KIOSK-h4-FULL-CAPS-font-style: normal;
+  --KIOSK-h4-FULL-CAPS-font-weight: 600;
+  --KIOSK-h4-FULL-CAPS-letter-spacing: 0.48px;
+  --KIOSK-h4-FULL-CAPS-line-height: 36px;
+  --KIOSK-keyboard-key-default: 0px 4px 2px 0px rgba(19, 30, 41, 0.32);
+  --KIOSK-keyboard-key-pressed: 0px 1px 2px 0px rgba(19, 30, 41, 0.56);
+  --kiosk-text-primary: rgba(33, 33, 33, 1);
+  --kiosk-text-secondary: rgba(91, 97, 107, 1);
+  --kioskbrand-primary-default: rgba(0, 113, 187, 1);
+  --kioskbrand-primarydarker: rgba(0, 62, 115, 1);
+  --kioskscrim: rgba(19, 30, 41, 0.8);
+  --label-font-family: "Nunito", Helvetica;
+  --label-font-size: 12px;
+  --label-font-style: normal;
+  --label-font-weight: 600;
+  --label-letter-spacing: 0px;
+  --label-line-height: 16px;
+  --overline-font-family: "Nunito", Helvetica;
+  --overline-font-size: 12px;
+  --overline-font-style: normal;
+  --overline-font-weight: 600;
+  --overline-letter-spacing: 1.44px;
+  --overline-line-height: 16px;
+  --scrimprimary: rgba(19, 30, 41, 0.6);
+  --scrimsecondary: rgba(19, 30, 41, 0.4);
+  --scrimtertiary: rgba(19, 30, 41, 0.2);
+  --semanticerror: rgba(209, 35, 35, 1);
+  --semanticerror-dark: rgba(185, 33, 33, 1);
+  --semanticsuccess: rgba(26, 122, 71, 1);
+  --semanticwarning: rgba(255, 175, 2, 1);
+  --title-font-family: "Lora", Helvetica;
+  --title-font-size: 34px;
+  --title-font-style: normal;
+  --title-font-weight: 500;
+  --title-letter-spacing: 0px;
+  --title-line-height: 52px;
+  --variable-collection-color: rgba(102, 45, 145, 1);
+  --vlm-primary-darker: rgba(17, 46, 81, 1);
+  --vlmprimary-base: rgba(20, 74, 130, 1);
+  --vlmred: rgba(179, 31, 22, 1);
+  --white: rgba(255, 255, 255, 1);
 }

@@ -1,0 +1,1 @@
+export { KioskIconSearch } from "./KioskIconSearch";
