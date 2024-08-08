@@ -1,6 +1,7 @@
 
 import PropTypes from "prop-types";
 import React from "react";
+import { text } from "stream/consumers";
 //import { Chevron } from "./Chevron";
 //import { KioskVeteran } from "./KioskVeteran";
 
@@ -54,7 +55,7 @@ export const KioskTableCell = ({ type, className, KIOSKVeteranTop = "image.png" 
               type === "icon" ? "rounded-lg" : ""
             } ${type === "icon" ? "justify-end" : ""}`}
           >
-            {type === "date" && <>10/05/1876</>}
+            {type === "date" && <>{text}</>}
 
             {/* {type === "icon" && <Chevron className="!relative !w-10 !h-10" />} */}
           </div>

@@ -55,7 +55,7 @@ export const KioskTableCell = ({ type, className, text, KIOSKVeteranTop = "image
               type === "icon" ? "rounded-lg" : ""
             } ${type === "icon" ? "justify-end" : ""}`}
           >
-            {type === "date" && <>10/05/1876</>}
+            {type === "date" && <>{text}</>}
 
             {/* {type === "icon" && <Chevron className="!relative !w-5 !h-5" />} */}
           </div>
