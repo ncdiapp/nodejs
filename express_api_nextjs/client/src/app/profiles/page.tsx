@@ -14,6 +14,16 @@ const toProperCase = (text: string): string => {
     .join(" ");
 };
 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  
+  // Format as MM/DD/YYYY
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getFullYear();
+  
+  return `${month}/${day}/${year}`;
+};
 
 // Client component
 const Profiles = () => {
@@ -72,7 +82,7 @@ const Profiles = () => {
                           <div className="flex items-start relative self-stretch w-full flex-[0_0_auto]">
                             <KioskTableCell KIOSKVeteranTop="top-9.png" className="!w-[420px]" type="name" text={toProperCase(profile.full_name)} />
                             <KioskTableCell className="!flex-1 !grow !w-[unset]" text={profile.date_of_birth} type="date" />
-                            <KioskTableCell className="!flex-1 !grow !w-[unset]" text={profile.date_of_interment} type="date" />
+                            <KioskTableCell className="!flex-1 !grow !w-[unset]" text={formatDate(profile.date_of_interment)} type="date" />
                             <KioskTableCell className="!flex-1 !grow !w-[unset]" text="KOREA" type="date" />
                             <KioskTableCell className="!flex-1 !grow !w-[unset]" text="US NAVY" type="date" />
                             <KioskTableCell
