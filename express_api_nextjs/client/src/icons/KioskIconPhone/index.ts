@@ -1,0 +1,1 @@
+export { KioskIconPhone } from "./KioskIconPhone";

@@ -1,0 +1,1 @@
+export { KioskIconPrint } from "./KioskIconPrint";

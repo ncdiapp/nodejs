@@ -1,0 +1,1 @@
+export { KioskIconChevron } from "./KioskIconChevron";

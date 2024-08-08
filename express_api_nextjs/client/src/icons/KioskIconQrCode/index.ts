@@ -1,0 +1,1 @@
+export { KioskIconQrCode } from "./KioskIconQrCode";

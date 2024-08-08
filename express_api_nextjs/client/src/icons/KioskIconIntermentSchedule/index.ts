@@ -1,0 +1,1 @@
+export { KioskIconIntermentSchedule } from "./KioskIconIntermentSchedule";
