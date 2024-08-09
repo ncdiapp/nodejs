@@ -72,16 +72,28 @@ app.get('/api/v1/cemeteries', async (req, res) => {
 });
 
 app.get('/api/v1/profiles', async (req, res) => {
-  try { 
-    const [profiles] = await pool.query(query_getProfiles);    
+  try {
+    const { name } = req.query;
 
-    return res.status(200).json({ profiles });
+    if (name) {
+      let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE full_name LIKE ?`;
+      let queryParams = [];
+      queryParams.push(`%${name}%`);
+
+      const [profiles] = await pool.query(query, queryParams);
+
+      return res.status(200).json({ profiles });
+    }
+    else {
+      const profiles = [];
+      return res.status(200).json({ profiles });
+    }
   } catch (error) {
     console.log(error);
-    throw error;
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
+});
 
-})
 
 app.get('/api/v1/profiles/:id', async (req, res) => {
   try {
@@ -90,7 +102,7 @@ app.get('/api/v1/profiles/:id', async (req, res) => {
 
     // Query the database for the specific cemetery
     const [profile] = await pool.query(
-     `SELECT * FROM (${query_getProfiles}) AS temp WHERE decedent_id = ?`, 
+      `SELECT * FROM (${query_getProfiles}) AS temp WHERE decedent_id = ?`,
       [id]);
 
     // Check if the cemetery was found

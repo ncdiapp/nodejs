@@ -85,7 +85,7 @@ const Home = () => {
               <div className="w-full">
                 <div className="h-0.5 bg-grey-200 relative self-stretch w-full" />
                 <div className="flex items-start relative flex-1 self-stretch w-full grow bg-white">
-                  <Link href="/profiles">
+                  <Link href="/gravelocator">
                     <KioskCard
                       KIOSKCardIconIcon={
                         <KioskIconGraveLocator1 className="!absolute !w-40 !h-40 !top-5 !left-5 !object-cover" />
