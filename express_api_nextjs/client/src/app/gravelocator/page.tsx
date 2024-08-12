@@ -13,7 +13,7 @@ import Keyboard from '../../components/Keyboard';
 
 
 // Client component
-const Profiles = () => {
+const GraveLocator = () => {
 
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
@@ -108,4 +108,4 @@ const Profiles = () => {
         </section>
     );
 };
-export default Profiles;
+export default GraveLocator;
