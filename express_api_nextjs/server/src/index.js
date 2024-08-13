@@ -2,7 +2,7 @@ import express from 'express';
 import cors from "cors";
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
-import { getCemeteries, getProfiles, getProfileById } from './service/appService.js';
+import { getCemeteries, getProfiles, getProfileById, getCemeteryById } from './service/appService.js';
 
 
 dotenv.config();
@@ -18,6 +18,7 @@ const app = express();
 
 app.use(cors());
 
+app.get('/api/v1/cemeteryinfo/:id', getCemeteryById);
 app.get('/api/v1/cemeteries', getCemeteries);
 app.get('/api/v1/profiles', getProfiles);
 app.get('/api/v1/profiles/:id', getProfileById);

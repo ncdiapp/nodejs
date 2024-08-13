@@ -46,10 +46,10 @@ export const KioskBottom = ({ page, className }: Props): JSX.Element => {
         <>
           <KioskIconPhone className="!relative !w-10 !h-10" color="white" />
           <p className="relative w-fit mt-[-1.00px] [font-family:'Source_Sans_Pro',Helvetica] font-normal text-white text-[32px] text-center tracking-[0] leading-8">
-            <span className="leading-[var(--KIOSK-body-line-height)] font-KIOSK-body [font-style:var(--KIOSK-body-font-style)] font-[number:var(--KIOSK-body-font-weight)] tracking-[var(--KIOSK-body-letter-spacing)] text-[length:var(--KIOSK-body-font-size)]">
+            <span className="leading-[var(--KIOSK-body-line-height)] font-KIOSK-body [font-style:var(--KIOSK-body-font-style)] font-[number:var(--KIOSK-body-font-weight)] tracking-[var(--KIOSK-body-letter-spacing)] text-[24px]">
               Are you eligible for VA Survivors benefits? To find out contact the VA at{" "}
             </span>
-            <span className="font-[number:var(--KIOSK-h3-font-weight)] leading-[var(--KIOSK-h3-line-height)] font-KIOSK-h3 [font-style:var(--KIOSK-h3-font-style)] tracking-[var(--KIOSK-h3-letter-spacing)] text-[length:var(--KIOSK-h3-font-size)]">
+            <span className="font-[number:var(--KIOSK-h3-font-weight)] leading-[var(--KIOSK-h3-line-height)] font-KIOSK-h3 [font-style:var(--KIOSK-h3-font-style)] tracking-[var(--KIOSK-h3-letter-spacing)] text-[20px]">
               1-800-827-1000
             </span>
           </p>

@@ -19,7 +19,7 @@ export const KioskHeader = ({
   text = "Header",
 }: Props): JSX.Element => {
   return (
-    <div className={`w-[1344px] h-[76px] rotate-180 ${className}`}>
+    <div className={`w-[1344px] h-[76px] overflow-hidden rotate-180 ${className}`}>
       <div className="relative h-[76px]">
         <div
           className={`w-[1300px] left-7 [background:linear-gradient(180deg,rgb(255,255,255)_0%,rgb(233,236,239)_100%)] absolute h-[76px] top-0 rounded-[0px_0px_76px_0px] border-4 border-solid border-white rotate-180 ${vectorClassName}`}

@@ -38,7 +38,7 @@ export const getCemeteryById = async (req, res) => {
   
       if (cemetery.length === 0) {
         return res.status(404).json({ error: 'Cemetery not found' });
-      }
+      }`        `
   
       return res.status(200).json({ cemetery: cemetery[0] });
     } catch (error) {
@@ -48,6 +48,7 @@ export const getCemeteryById = async (req, res) => {
   };
   
 
+  
 export const getProfiles = async (req, res) => {
   try {
     const { name } = req.query;

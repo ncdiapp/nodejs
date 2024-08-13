@@ -38,7 +38,7 @@ export const KioskCard = ({
       >
         <div className={`w-[408px] flex flex-col items-center gap-6 flex-[0_0_auto] relative ${contentClassName}`}>
           <KioskCardIcon className="!relative" icon={KIOSKCardIconIcon} />
-          <div className="font-KIOSK-h2 self-stretch tracking-[var(--KIOSK-h2-letter-spacing)] [font-style:var(--KIOSK-h2-font-style)] text-[length:var(--KIOSK-h2-font-size)] text-kioskbrand-primarydarker font-[number:var(--KIOSK-h2-font-weight)] text-center leading-[var(--KIOSK-h2-line-height)] relative">
+          <div className="font-KIOSK-h2 self-stretch tracking-[var(--KIOSK-h2-letter-spacing)] [font-style:var(--KIOSK-h2-font-style)] text-kioskbrand-primarydarker font-[number:var(--KIOSK-h2-font-weight)] text-center relative text-[32px] leading-[48px]">
             {text}
           </div>
         </div>
