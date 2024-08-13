@@ -29,12 +29,12 @@ const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
 
     const handlePopupOpen = () => {
         setIsShowDirectionPopup(true);
-      };
-    
-      const handlePopupClose = () => {
+    };
+
+    const handlePopupClose = () => {
         setIsShowDirectionPopup(false);
-      };
-      
+    };
+
     const [profile, setProfile] = useState<any>([]);
 
     const fetchProfileDeatails = async () => {
@@ -198,7 +198,7 @@ const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
                             <Link className="w-40 block mx-auto" href="/gravelocator">
                                 <div className="flex gap-3 pl-6 pr-3 py-3 rotate-180 rounded-lg bg-white relative">
                                     <div className="font-KIOSK-h3 w-fit mt-[-1.00px] tracking-[var(--KIOSK-h3-letter-spacing)] text-[length:var(--KIOSK-h3-font-size)] [font-style:var(--KIOSK-h3-font-style)] text-[#003E73] rotate-180 font-[number:var(--KIOSK-h3-font-weight)] text-right whitespace-nowrap leading-[var(--KIOSK-h3-line-height)] relative">
-                                       Go Back
+                                        Go Back
                                     </div>
                                     <KioskIconArrow2 className="!relative !w-5 !h-5 !-rotate-90 text-white" />
                                 </div>
@@ -207,7 +207,7 @@ const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
                             <button onClick={handlePopupOpen} className="w-40 block mx-auto" href="">
                                 <div className="flex gap-3 pl-6 pr-3 py-3 rotate-180 rounded-lg bg-white relative">
                                     <div className="font-KIOSK-h3 w-fit mt-[-1.00px] tracking-[var(--KIOSK-h3-letter-spacing)] text-[length:var(--KIOSK-h3-font-size)] [font-style:var(--KIOSK-h3-font-style)] text-[#003E73] rotate-180 font-[number:var(--KIOSK-h3-font-weight)] text-right whitespace-nowrap leading-[var(--KIOSK-h3-line-height)] relative">
-                                       Get Direction
+                                        Get Direction
                                     </div>
                                     <KioskIconGraveLocator className="!relative !w-5 !h-5 !-rotate-90 text-white" />
                                 </div>
@@ -215,7 +215,7 @@ const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
                             <Link className="w-40 block mx-auto" href="">
                                 <div className="flex gap-3 pl-6 pr-3 py-3 rotate-180 rounded-lg bg-white relative">
                                     <div className="font-KIOSK-h3 w-fit mt-[-1.00px] tracking-[var(--KIOSK-h3-letter-spacing)] text-[length:var(--KIOSK-h3-font-size)] [font-style:var(--KIOSK-h3-font-style)] text-[#003E73] rotate-180 font-[number:var(--KIOSK-h3-font-weight)] text-right whitespace-nowrap leading-[var(--KIOSK-h3-line-height)] relative">
-                                       Print Map
+                                        Print Map
                                     </div>
                                     <KioskIconPrint className="!relative !w-5 !h-5 !-rotate-90 text-white" />
                                 </div>
@@ -226,16 +226,32 @@ const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
             </div>
 
             {
-                isShowDirectionPopup && 
-                <div className="fixed w-[300px] h-[300px] max-w-full max-h-full m-auto bg-white rounded-md shadow-md z-50">
-                    <div className="">
-                        <div className="text-[#003E73] text-[28px] text-center flex flex-col items-center">
-                            Get Directions
+                isShowDirectionPopup &&
+                <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-[rgba(0,0,0,0.1)]">
+                    <div className="flex flex-col absolute top-0 left-0 right-0 bottom-0 w-[500px] h-[500px] max-w-full max-h-full m-auto bg-white rounded-md shadow-md z-50">
+                        <div className="flex flex-col items-center px-10 py-6">
+                            <div className="text-[#003E73] text-[24px] text-center font-bold">
+                                Get Directions
+                            </div>
+                            <div className="text-[#212121] text-[18px] text-center pt-2">
+                                To get directions directly on your mobile device,
+                                scan the QR code below
+                            </div>
+                        </div>
+                        <div className="w-full h-[50%] flex-auto">
+                            <div className="w-full h-full flex flex-col items-center">
+                                <div className="w-full h-full p-4">
+                                    <img className="max-w-full max-h-full m-auto" alt="QR" src="../img/QRDirection.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="w-full h-24 pt-5 text-center">
+                            <button onClick={handlePopupClose} 
+                            className="bg-[#0071BB] px-5 py-2 w-20 mx-auto rounded-sm text-white">Close</button>
                         </div>
                     </div>
-                    <div></div>
-                    <div></div>
                 </div>
+
 
             }
         </section>
