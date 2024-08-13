@@ -84,7 +84,7 @@ const Profiles = () => {
                         {/* t_honorsdisplay.honorsdisplay, t_servicebranchesdisplay.servicebranchesdisplay, t_warperiodsdisplay.warperiodsdisplay */}
                         {data.map((profile) => (
                           <div key={profile.decedent_id} className="flex items-start justify-center px-1 py-2 flex-1 self-stretch w-full grow bg-white rounded-xl border-1 border-solid border-grey-200 flex-col relative">
-                            <Link href="/profiledetails">
+                            <Link href={`/profiledetails/${profile.decedent_id}`}>
                               <div className="flex items-start relative self-stretch w-full flex-[0_0_auto]">
                                 <KioskTableCell KIOSKVeteranTop="top-9.png" className="!w-[300px]" type="name" text={toProperCase(profile.full_name)} />
                                 <KioskTableCell className="!w-[150px]" text={profile.date_of_birth} type="date" />
