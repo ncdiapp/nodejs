@@ -1,12 +1,14 @@
+
 "use client";
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { KioskTopNavigation } from "../../components/KioskTopNavigation";
 import { KioskHeader } from "../../components/KioskHeader";
 import { KioskTableHeader } from "../../components/KioskTableHeader";
 import { KioskTableCell } from "../../components/KioskTableCell";
+import Link from "next/link";
 
-
+// Function to convert text to Proper Case
 const toProperCase = (text: string): string => {
   return text
     .split(" ")
@@ -14,34 +16,37 @@ const toProperCase = (text: string): string => {
     .join(" ");
 };
 
-const formatDate = (dateString) => {
+// Function to format date as MM/DD/YYYY
+const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
-  
-  // Format as MM/DD/YYYY
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   const year = date.getFullYear();
-  
   return `${month}/${day}/${year}`;
 };
 
 // Client component
 const Profiles = () => {
   const [data, setData] = useState<any[]>([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const res = await fetch("/api/v1/profiles");
+        const name = searchParams.get("name");
+        console.log("")
+
+        const res = await fetch(`/api/v1/profiles${name ? `?name=${name}` : ''}`);
         const resData = await res.json();
         setData(resData.profiles);
-        return resData;
       } catch (error) {
-        throw error;
+        console.error(error);
       }
     };
+
     fetchProfiles();
-  }, []);
+  }, [searchParams]);
 
   return (
     <section className="w-full">
@@ -63,41 +68,43 @@ const Profiles = () => {
                     <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto] bg-white">
                       <div className="flex flex-col items-start px-14 py-0 relative self-stretch w-full flex-[0_0_auto]">
                         <div className="flex items-start px-2 py-4 relative self-stretch w-full flex-[0_0_auto]">
-                          <KioskTableHeader className="!w-[420px]" text="NAME" />
-                          <KioskTableHeader className="!flex-1 !grow !w-[unset]" text="BIRTH DATE" />
-                          <KioskTableHeader className="!flex-1 !grow !w-[unset]" text="INTERMENT" />
-                          <KioskTableHeader className="!flex-1 !grow !w-[unset]" text="WAR PERIOD" />
-                          <KioskTableHeader className="!flex-1 !grow !w-[unset]" text="SERVICE BRANCH" />
-                          <KioskTableHeader className="!flex-1 !grow !w-[unset]" text="DECORATIONS" />
-                          <div className="relative self-stretch w-[104px]" />
+                          <KioskTableHeader className="!w-[300px]" text="NAME" />
+                          <KioskTableHeader className="!w-[150px]" text="BIRTH DATE" />
+                          <KioskTableHeader className="!w-[150px]" text="INTERMENT" />
+                          <KioskTableHeader className="!w-[300px]" text="WAR PERIOD" />
+                          <KioskTableHeader className="!w-[300px]" text="SERVICE BRANCH" />
+                          {/* <KioskTableHeader className="!w-[200px]" text="DECORATIONS" /> */}
+                          {/* <div className="relative self-stretch w-[104px]" /> */}
                         </div>
                       </div>
                       <div className="relative self-stretch w-full h-1 bg-grey-200" />
                     </div>
                     <div className="flex items-start px-7 py-3 relative flex-1 self-stretch w-full grow bg-grey-100">
                       <div className="flex items-start gap-4 flex-1 self-stretch grow flex-col relative">
-                        
+                        {/* t_honorsdisplay.honorsdisplay, t_servicebranchesdisplay.servicebranchesdisplay, t_warperiodsdisplay.warperiodsdisplay */}
                         {data.map((profile) => (
                           <div key={profile.decedent_id} className="flex items-start justify-center px-1 py-2 flex-1 self-stretch w-full grow bg-white rounded-xl border-1 border-solid border-grey-200 flex-col relative">
-                          <div className="flex items-start relative self-stretch w-full flex-[0_0_auto]">
-                            <KioskTableCell KIOSKVeteranTop="top-9.png" className="!w-[420px]" type="name" text={toProperCase(profile.full_name)} />
-                            <KioskTableCell className="!flex-1 !grow !w-[unset]" text={profile.date_of_birth} type="date" />
-                            <KioskTableCell className="!flex-1 !grow !w-[unset]" text={formatDate(profile.date_of_interment)} type="date" />
-                            <KioskTableCell className="!flex-1 !grow !w-[unset]" text="KOREA" type="date" />
-                            <KioskTableCell className="!flex-1 !grow !w-[unset]" text="US NAVY" type="date" />
-                            <KioskTableCell
-                              className="!flex-1 !grow !w-[unset]"
-                              nameClassName="!opacity-0"
-                              text="15/08/2017"
-                              type="date"
-                            />
-                            <KioskTableCell className="!flex-[0_0_auto]" type="icon" />
+                            <Link href={`/profiledetails/${profile.decedent_id}`}>
+                              <div className="flex items-start relative self-stretch w-full flex-[0_0_auto]">
+                                <KioskTableCell KIOSKVeteranTop="top-9.png" className="!w-[300px]" type="name" text={toProperCase(profile.full_name)} />
+                                <KioskTableCell className="!w-[150px]" text={profile.date_of_birth} type="date" />
+                                <KioskTableCell className="!w-[150px]" text={formatDate(profile.date_of_interment)} type="date" />
+                                <KioskTableCell className="!w-[300px] !overflow-hidden" text={profile.warperiodsdisplay} type="name" />
+                                <KioskTableCell className="!w-[300px] !overflow-hidden" text={profile.servicebranchesdisplay} type="name" />
+                                {/* <KioskTableCell
+                            className="!w-[300px] !overflow-hidden"
+                            nameClassName="!opacity-0"
+                            text={profile.honorsdisplay} 
+                            type="name"
+                          /> */}
+                                {/* <KioskTableCell className="!flex-[0_0_auto]" type="icon" /> */}
+                              </div>
+                            </Link>
                           </div>
-                        </div>
 
-                         
+
                         ))}
-                        
+
                       </div>
                     </div>
                   </div>
@@ -113,20 +120,25 @@ const Profiles = () => {
         </div>
       </div>
       {/* <div className="mb-10">
-        {data.map((profile) => (
-          <div key={profile.decedent_id}>
-            <h1 className="text-3xl">{toProperCase(profile.full_name)}</h1>
-          </div>
-        ))}
-      </div>
+      {data.map((profile) => (
+        <div key={profile.decedent_id}>
+          <h1 className="text-3xl">{toProperCase(profile.full_name)}</h1>
+        </div>
+      ))}
+    </div>
 
-      <Link
-        href=""
-        className="p-4 border bg-white text-black rounded-md"
-      >
-        Test
-      </Link> */}
+    <Link
+      href=""
+      className="p-4 border bg-white text-black rounded-md"
+    >
+      Test
+    </Link> */}
     </section>
   );
 };
+
 export default Profiles;
+
+
+
+

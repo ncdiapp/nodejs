@@ -14,7 +14,7 @@ interface Props {
 export const KioskTableCell = ({ type, className, text, KIOSKVeteranTop = "image.png" }: Props): JSX.Element => {
   return (
     <div
-      className={`flex-col px-2 py-0 relative ${["date", "name"].includes(type) ? "w-[600px]" : ""} ${
+      className={`flex-col px-2 py-0 relative whitespace-nowrap overflow-hidden ${["date", "name"].includes(type) ? "w-[600px]" : ""} ${
         type === "icon" ? "inline-flex" : "flex"
       } ${type === "icon" ? "items-end" : "items-start"} ${className}`}
     >
