@@ -27,9 +27,12 @@ const formatDate = (dateString: string): string => {
 
 // Client component
 const Profiles = () => {
+
   const [data, setData] = useState<any[]>([]);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const CEMETERY_ID = process.env.NEXT_PUBLIC_CEMETERY_ID
+  const isSearchAllCemetery = searchParams.get("searchallcemetery") == 'true';
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -37,9 +40,19 @@ const Profiles = () => {
         const name = searchParams.get("name");
         console.log("")
 
-        const res = await fetch(`/api/v1/profiles${name ? `?name=${name}` : ''}`);
-        const resData = await res.json();
-        setData(resData.profiles);
+        if (isSearchAllCemetery) {
+          const res = await fetch(`/api/v1/profiles${name ? `?name=${name}` : ''}`);
+
+          const resData = await res.json();
+          setData(resData.profiles);
+        }
+        else {
+          const res = await fetch(`/api/v1/profilesbycemetery/${CEMETERY_ID}${name ? `?name=${name}` : ''}`);
+
+          const resData = await res.json();
+          setData(resData.profiles);
+        }
+
       } catch (error) {
         console.error(error);
       }
@@ -71,8 +84,19 @@ const Profiles = () => {
                           <KioskTableHeader className="!w-[300px]" text="NAME" />
                           <KioskTableHeader className="!w-[150px]" text="BIRTH DATE" />
                           <KioskTableHeader className="!w-[150px]" text="INTERMENT" />
-                          <KioskTableHeader className="!w-[300px]" text="WAR PERIOD" />
-                          <KioskTableHeader className="!w-[300px]" text="SERVICE BRANCH" />
+
+                          {isSearchAllCemetery ? (
+                            <>
+                              <KioskTableHeader className="!w-[300px]" text="Cemetery" />
+                            </>
+                          ) : (
+                            <>
+                              <KioskTableHeader className="!w-[300px]" text="WAR PERIOD" />
+                              <KioskTableHeader className="!w-[300px]" text="SERVICE BRANCH" />
+                            </>
+                          )}
+
+
                           {/* <KioskTableHeader className="!w-[200px]" text="DECORATIONS" /> */}
                           {/* <div className="relative self-stretch w-[104px]" /> */}
                         </div>
@@ -89,8 +113,17 @@ const Profiles = () => {
                                 <KioskTableCell KIOSKVeteranTop="top-9.png" className="!w-[300px]" type="name" text={toProperCase(profile.full_name)} />
                                 <KioskTableCell className="!w-[150px]" text={profile.date_of_birth} type="date" />
                                 <KioskTableCell className="!w-[150px]" text={formatDate(profile.date_of_interment)} type="date" />
-                                <KioskTableCell className="!w-[300px] !overflow-hidden" text={profile.warperiodsdisplay} type="name" />
-                                <KioskTableCell className="!w-[300px] !overflow-hidden" text={profile.servicebranchesdisplay} type="name" />
+                                {isSearchAllCemetery ? (
+                                  <>
+                                    <KioskTableCell className="!w-[300px] !overflow-hidden" text={profile.cemeteryname} type="name" />
+                                  </>
+                                ) : (
+                                  <>
+                                    <KioskTableCell className="!w-[300px] !overflow-hidden" text={profile.warperiodsdisplay} type="name" />
+                                    <KioskTableCell className="!w-[300px] !overflow-hidden" text={profile.servicebranchesdisplay} type="name" />
+                                  </>
+                                )}
+
                                 {/* <KioskTableCell
                             className="!w-[300px] !overflow-hidden"
                             nameClassName="!opacity-0"

@@ -18,6 +18,9 @@ const GraveLocator = () => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
+    const [isSearchAllCemetery, setIsSearchAllCemetery] = useState(false);
+    const inputRefIsSearchAllCemetery = useRef<HTMLInputElement>(null);
+
     const handleKeyPress = (key: string) => {
         setInputValue((prev) => prev + key);
 
@@ -69,11 +72,19 @@ const GraveLocator = () => {
                                             placeholder="Enter Veteran Last Name"
                                         />
 
-                                        <Link href={'/profiles?name=' + inputValue} className="block">
+                                        <Link href={'/profiles?name=' + inputValue + '&searchallcemetery=' + isSearchAllCemetery} className="block">
                                             <button className="w-[120px] h-[60px] bg-[#0071BB] text-white rounded-md">Search</button>
                                         </Link>
                                     </div>
-
+                                    <div className="text-center text-[16px] [color:#212121] py-8">
+                                        <input className=""
+                                            ref={inputRefIsSearchAllCemetery}
+                                            type="checkbox" 
+                                            checked={isSearchAllCemetery}
+                                            onChange={(e) => setIsSearchAllCemetery(e.target.checked)}                                           
+                                        /> 
+                                        <span className="px-2">Search All Cemetery</span>
+                                    </div>
 
 
 
