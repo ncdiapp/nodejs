@@ -54,7 +54,7 @@ export const getProfiles = async (req, res) => {
     const { name } = req.query;
 
     if (name) {
-      let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE full_name LIKE ?`;
+      let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE full_name LIKE ? order by cemeteryname, full_name`;
       let queryParams = [];
       queryParams.push(`%${name}%`);
 
@@ -70,6 +70,30 @@ export const getProfiles = async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+export const getProfilesByCelemteryId = async (req, res) => {
+    try {
+      const { cemeteryid } = req.params;
+      const { name } = req.query;
+  
+      if (name && cemeteryid) {
+        let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE full_name LIKE ? and cemetery_num = ? order by full_name`;
+        let queryParams = [];
+        queryParams.push(`%${name}%`);
+        queryParams.push(`${cemeteryid}`);
+  
+        const [profiles] = await pool.query(query, queryParams);
+  
+        return res.status(200).json({ profiles });
+      } else {
+        const profiles = [];
+        return res.status(200).json({ profiles });
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
 
 export const getProfileById = async (req, res) => {
   try {

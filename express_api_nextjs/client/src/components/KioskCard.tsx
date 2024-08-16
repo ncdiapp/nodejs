@@ -19,7 +19,7 @@ export const KioskCard = ({
   contentClassName,
   KIOSKCardIconIcon = (
     <KioskIconCemeteryInformation3
-      className="!absolute !w-40 !h-40 !top-5 !left-5 !object-cover"
+      className="!absolute !w-20 !h-20 !top-5 !left-5 !object-cover"
       color="url(#paint0_linear_40078_75)"
     />
   ),
@@ -27,18 +27,18 @@ export const KioskCard = ({
 }: Props): JSX.Element => {
   return (
     <div
-      className={`w-[520px] flex flex-col items-center shadow-[0px_8px_8px_#131e290a,0px_24px_18px_#131e290a] h-[520px] rounded-2xl justify-center relative ${className}`}
+      className={`w-full h-full flex flex-col items-center shadow-[0px_8px_8px_#131e290a,0px_24px_18px_#131e290a] rounded-2xl justify-center relative ${className}`}
     >
       <div
-        className={`flex items-center flex-1 p-14 relative w-full flex-col grow rounded-2xl gap-14 bg-white self-stretch justify-center ${
+        className={`flex items-center flex-1 p-7 relative w-full flex-col grow rounded-2xl gap-7 bg-white self-stretch justify-center ${
           state === "pressed" ? "border-kiosk-gold" : "border-transparent"
         } ${state === "default" ? "[border-image:linear-gradient(to_bottom,rgb(0,62,115),rgb(0,113,187))_1]" : ""} ${
           state === "pressed" ? "border-4 border-solid" : "border-0 border-solid"
         } ${cardClassName}`}
       >
-        <div className={`w-[408px] flex flex-col items-center gap-6 flex-[0_0_auto] relative ${contentClassName}`}>
+        <div className={`w-full flex flex-col items-center gap-6 flex-[0_0_auto] relative ${contentClassName}`}>
           <KioskCardIcon className="!relative" icon={KIOSKCardIconIcon} />
-          <div className="font-KIOSK-h2 self-stretch tracking-[var(--KIOSK-h2-letter-spacing)] [font-style:var(--KIOSK-h2-font-style)] text-kioskbrand-primarydarker font-[number:var(--KIOSK-h2-font-weight)] text-center relative text-[32px] leading-[48px]">
+          <div className="font-KIOSK-h2 [font-style:var(--KIOSK-h2-font-style)] text-kioskbrand-primarydarker font-[number:var(--KIOSK-h2-font-weight)] text-center relative text-[24px] leading-[32px]">
             {text}
           </div>
         </div>
