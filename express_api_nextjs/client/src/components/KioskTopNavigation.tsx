@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import { createDataService } from "../services/dataservice";
 
 //import { useAppContext } from "../contexts/AppContext";
 
@@ -9,13 +10,19 @@ interface Props {
 }
 
 export const KioskTopNavigation = ({ className }: Props): JSX.Element => {
+  const dataService = createDataService();   
   const CEMETERY_ID = process.env.NEXT_PUBLIC_CEMETERY_ID
   const [cemeteryInfo, setCemeteryInfo] = useState<any>([]);
   const fetchCemeteryInfo = async () => {
     try {
-      const res = await fetch(`/api/v1/cemeteryinfo/${CEMETERY_ID}`);
-      const resData = await res.json();
-      setCemeteryInfo(resData.cemetery);
+      const { success, data, error } = await dataService.getCurrentCemeteryInfo();
+      if (success) {
+        setCemeteryInfo(data);
+      }
+      else {
+          console.error(error);                
+      }      
+
     } catch (error) {
       console.error(error);
     }

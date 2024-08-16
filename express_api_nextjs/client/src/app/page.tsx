@@ -11,19 +11,24 @@ import { KioskIconPhone } from "../icons/KioskIconPhone";
 
 import { useEffect, useState } from 'react';
 import Link from "next/link";
+import { createDataService } from "../services/dataservice";
 
 const Home = () => {
   //const { cemeteryInfo } = useAppContext();
   // const [scaleValue, setScaleValue] = useState(1);
   // const [containerWidth, setContainerWidth] = useState(1920);
-
+  const dataService = createDataService();   
   const CEMETERY_ID = process.env.NEXT_PUBLIC_CEMETERY_ID
   const [cemeteryInfo, setCemeteryInfo] = useState<any>([]);
   const fetchCemeteryInfo = async () => {
     try {
-      const res = await fetch(`/api/v1/cemeteryinfo/${CEMETERY_ID}`);
-      const resData = await res.json();
-      setCemeteryInfo(resData.cemetery);
+      const { success, data, error } = await dataService.getCurrentCemeteryInfo();
+      if (success) {
+        setCemeteryInfo(data);
+      }
+      else {
+          console.error(error);                
+      }      
     } catch (error) {
       console.error(error);
     }

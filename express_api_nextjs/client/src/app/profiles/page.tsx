@@ -7,7 +7,7 @@ import { KioskHeader } from "../../components/KioskHeader";
 import { KioskTableHeader } from "../../components/KioskTableHeader";
 import { KioskTableCell } from "../../components/KioskTableCell";
 import Link from "next/link";
-import { createDataService } from "../../services/dataservice";
+import { createDataService, GetProfilesInputDto } from "../../services/dataservice";
 
 // Function to convert text to Proper Case
 const toProperCase = (text: string): string => {
@@ -40,34 +40,19 @@ const Profiles = () => {
 
   useEffect(() => {
     const fetchProfiles = async () => {
-      try {
-        const name = searchParams.get("name");
-        console.log("")
+      try {        
+        const input: GetProfilesInputDto = {
+          name: searchParams.get("name") || '',
+          isSearchAllCemetery: isSearchAllCemetery || false,
+        };
 
-        if (isSearchAllCemetery) {
-          //const res = await fetch(`/api/v1/profiles${name ? `?name=${name}` : ''}`);
-          //const resData = await res.json();
-          //setData(resData.profiles);
-
-          const input: any = {
-            name: name,
-          };
-
-          const { success, data, error } = await dataService.getProfiles(input);    
-          if (success) {
-            setData(data);
-          }
-          else {
-            return <div>Error: {error}</div>;
-          }
+        const { success, data, error } = await dataService.getProfiles(input);
+        if (success) {
+          setData(data);
         }
         else {
-          const res = await fetch(`/api/v1/profilesbycemetery/${CEMETERY_ID}${name ? `?name=${name}` : ''}`);
-
-          const resData = await res.json();
-          setData(resData.profiles);
+          return <div>Error: {error}</div>;
         }
-
       } catch (error) {
         console.error(error);
       }

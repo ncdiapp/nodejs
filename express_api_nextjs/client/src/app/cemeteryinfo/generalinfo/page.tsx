@@ -10,6 +10,9 @@ import { KioskIconPrint } from "../../../icons/KioskIconPrint";
 import { KioskIconBenefitsAndServices } from "../../../icons/KioskIconBenefitsAndServices";
 import { KioskIconIntermentSchedule } from "../../../icons/KioskIconIntermentSchedule";
 import { KioskIconPhone } from "../../../icons/KioskIconPhone";
+import { createDataService } from "../../../services/dataservice";
+
+const CEMETERY_ID = process.env.NEXT_PUBLIC_CEMETERY_ID
 
 const toProperCase = (text: string): string => {
     return text
@@ -28,16 +31,20 @@ const formatDate = (dateString: string): string => {
 
 // Client component
 const CemeteryInfo = () => {
-    const CEMETERY_ID = process.env.NEXT_PUBLIC_CEMETERY_ID
-    
+    const dataService = createDataService();   
 
     const [cemetery, setCemetery] = useState<any>([]);
 
     const fetchCemeteryInfo = async() => {
-        try {
-            const res = await fetch(`/api/v1/cemeteryinfo/${CEMETERY_ID}`);
-            const resData = await res.json();
-            setCemetery(resData.cemetery);
+        try {    
+            const { success, data, error } = await dataService.getCurrentCemeteryInfo();
+            if (success) {
+                setCemetery(data);
+            }
+            else {
+                console.error(error);                
+            }
+
         } catch (error) {
             console.error(error);
         }

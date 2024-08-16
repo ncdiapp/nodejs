@@ -7,6 +7,7 @@ import { KioskIconHome1 } from "../../../icons/KioskIconHome1";
 import { KioskIconArrow2 } from "../../../icons/KioskIconArrow2";
 import { KioskIconGraveLocator } from "../../../icons/KioskIconGraveLocator";
 import { KioskIconPrint } from "../../../icons/KioskIconPrint";
+import { createDataService } from "../../../services/dataservice";
 
 const toProperCase = (text: string): string => {
     return text
@@ -25,6 +26,7 @@ const formatDate = (dateString: string): string => {
 
 // Client component
 const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
+    const dataService = createDataService();
     const [isShowDirectionPopup, setIsShowDirectionPopup] = useState(false);
 
     const handlePopupOpen = () => {
@@ -39,9 +41,14 @@ const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
 
     const fetchProfileDeatails = async () => {
         try {
-            const res = await fetch(`/api/v1/profiles/${params.decedent_id}`);
-            const resData = await res.json();
-            setProfile(resData.profile);
+            const { success, data, error } = await dataService.getProfileDetails(params.decedent_id);
+            if (success) {
+                setProfile(data);
+            }
+            else {
+                console.error(error);                
+            }
+
         } catch (error) {
             console.error(error);
         }
@@ -246,8 +253,8 @@ const ProfileDetails = ({ params }: { params: { decedent_id: string } }) => {
                             </div>
                         </div>
                         <div className="w-full h-24 pt-5 text-center">
-                            <button onClick={handlePopupClose} 
-                            className="bg-[#0071BB] px-5 py-2 w-20 mx-auto rounded-sm text-white">Close</button>
+                            <button onClick={handlePopupClose}
+                                className="bg-[#0071BB] px-5 py-2 w-20 mx-auto rounded-sm text-white">Close</button>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 // src/app/contexts/AppContext.tsx
 "use client";
 import React, { createContext, useContext, ReactNode, useState } from 'react';
-
+import { createDataService } from "../services/dataservice";
 
 interface AppContextType {
     cemeteryInfo: any;
@@ -10,14 +10,19 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-
+    const dataService = createDataService();   
     const CEMETERY_ID = process.env.NEXT_PUBLIC_CEMETERY_ID
     const [cemetery, setCemetery] = useState<any>([]);
     const fetchCemeteryInfo = async () => {
-        try {
-            const res = await fetch(`/api/v1/cemeteryinfo/${CEMETERY_ID}`);
-            const resData = await res.json();
-            setCemetery(resData.cemetery);
+        try {           
+            const { success, data, error } = await dataService.getCurrentCemeteryInfo();
+            if (success) {
+                setCemetery(data);
+            }
+            else {
+                console.error(error);                
+            }      
+
         } catch (error) {
             console.error(error);
         }
