@@ -7,6 +7,7 @@ import { KioskHeader } from "../../components/KioskHeader";
 import { KioskTableHeader } from "../../components/KioskTableHeader";
 import { KioskTableCell } from "../../components/KioskTableCell";
 import Link from "next/link";
+import { createDataService } from "../../services/dataservice";
 
 // Function to convert text to Proper Case
 const toProperCase = (text: string): string => {
@@ -27,12 +28,15 @@ const formatDate = (dateString: string): string => {
 
 // Client component
 const Profiles = () => {
+  const dataService = createDataService();
 
   const [data, setData] = useState<any[]>([]);
   const searchParams = useSearchParams();
   const router = useRouter();
   const CEMETERY_ID = process.env.NEXT_PUBLIC_CEMETERY_ID
   const isSearchAllCemetery = searchParams.get("searchallcemetery") == 'true';
+
+
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -41,10 +45,21 @@ const Profiles = () => {
         console.log("")
 
         if (isSearchAllCemetery) {
-          const res = await fetch(`/api/v1/profiles${name ? `?name=${name}` : ''}`);
+          //const res = await fetch(`/api/v1/profiles${name ? `?name=${name}` : ''}`);
+          //const resData = await res.json();
+          //setData(resData.profiles);
 
-          const resData = await res.json();
-          setData(resData.profiles);
+          const input: any = {
+            name: name,
+          };
+
+          const { success, data, error } = await dataService.getProfiles(input);    
+          if (success) {
+            setData(data);
+          }
+          else {
+            return <div>Error: {error}</div>;
+          }
         }
         else {
           const res = await fetch(`/api/v1/profilesbycemetery/${CEMETERY_ID}${name ? `?name=${name}` : ''}`);
@@ -59,7 +74,7 @@ const Profiles = () => {
     };
 
     fetchProfiles();
-  }, [searchParams]);
+  }, []);
 
   return (
     <section className="w-full">
