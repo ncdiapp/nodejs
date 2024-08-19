@@ -20,7 +20,7 @@ export const getCemeteries = async (req, res) => {
     try {
         const [cemeteries] = await pool.query(`
           SELECT *
-          FROM chalicedb.cemeteries_top100
+          FROM cemeteries
         `);
 
         return res.status(200).json({ cemeteries });
@@ -36,7 +36,7 @@ export const getCemeteryById = async (req, res) => {
 
         const [cemetery] = await pool.query(
             `SELECT *
-          FROM chalicedb.cemeteries_top100 WHERE cemetery_id = ?`,
+          FROM cemeteries WHERE cemetery_id = ?`,
             [id]);
 
         if (cemetery.length === 0) {

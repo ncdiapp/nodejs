@@ -118,7 +118,7 @@ export class MgtApiDataService implements DataService {
 }
 
 export function createDataService(): DataService {
-    let condition = 1;
+    let condition = 2;
 
     if (condition === 1) {
         return new MgtApiDataService();
