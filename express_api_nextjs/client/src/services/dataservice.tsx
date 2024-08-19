@@ -46,7 +46,7 @@ export class MySQLDataService implements DataService {
                 return { success: true, data: resData.profiles };
             }
             else {
-                const response = await fetch(`/api/v1/profilesbycemetery/${CEMETERY_ID}${input.name ? `?name=${name}` : ''}`);
+                const response = await fetch(`/api/v1/profilesbycemetery/${CEMETERY_ID}${input.name? `?name=${input.name}` : ''}`);
                 const resData = await response.json();
                 return { success: true, data: resData.profiles };
             }
