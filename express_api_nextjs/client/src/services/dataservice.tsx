@@ -17,6 +17,8 @@ export interface GetProfilesInputDto {
     isSearchAllCemetery?: boolean;
 }
 
+
+
 export interface DataService {
     getCurrentCemeteryInfo(): Promise<DataServiceResultDto>;
     getProfiles(input: GetProfilesInputDto): Promise<DataServiceResultDto>;
@@ -118,7 +120,7 @@ export class MgtApiDataService implements DataService {
 }
 
 export function createDataService(): DataService {
-    let condition = 2;
+    let condition = 1;
 
     if (condition === 1) {
         return new MgtApiDataService();
