@@ -13,6 +13,8 @@ internal api call host is "server", on port 5000 by defaut.
     npm install ts-node typescript --save-dev
 
 2. crate server.mts
+ --- Solution for node 18 ts-node --esm myfile.mts,  
+ ---  node version 20 need to sue load : "dev": "node --loader ts-node/esm server.mts",
 
 3. Update package.json Scripts: 
     "scripts": {
