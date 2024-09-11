@@ -55,16 +55,24 @@ export const getCemeteryById = async (req, res) => {
 export const getProfiles = async (req, res) => {
     try {
         const { name } = req.query;
+        let nameArray = [];
 
-        if (name) {
-            let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE full_name LIKE ? order by cemeteryname, full_name`;
-            let queryParams = [];
-            queryParams.push(`%${name}%`);
-
+        if (name) {            
+            nameArray = name.replace(/  +/g, ' ').trim().split(" ").filter(n => n !== '');              
+        } 
+        
+        if (nameArray.length > 0){
+            const whereConditions = nameArray.map(() => 'full_name LIKE ?').join(' AND ');        
+        
+            let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE ${whereConditions} ORDER BY cemeteryname, full_name`;
+           
+            let queryParams = nameArray.map(n => `%${n}%`);
+           
             const [profiles] = await pool.query(query, queryParams);
 
-            return res.status(200).json({ profiles });
-        } else {
+            return res.status(200).json({ profiles });     
+        }
+        else{
             const profiles = [];
             return res.status(200).json({ profiles });
         }
@@ -78,17 +86,35 @@ export const getProfilesByCelemteryId = async (req, res) => {
     try {
         const { cemeteryid } = req.params;
         const { name } = req.query;
+        let nameArray = [];
 
         if (name && cemeteryid) {
-            let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE full_name LIKE ? and cemetery_num = ? order by full_name`;
-            let queryParams = [];
-            queryParams.push(`%${name}%`);
+            nameArray = name.replace(/  +/g, ' ').trim().split(" ").filter(n => n !== '');            
+        } 
+        
+        if (nameArray.length > 0 && cemeteryid){
+            // let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE full_name LIKE ? and cemetery_num = ? order by full_name`;
+            // let queryParams = [];
+            // queryParams.push(`%${name}%`);
+            // queryParams.push(`${cemeteryid}`);
+
+            // const [profiles] = await pool.query(query, queryParams);
+
+            // return res.status(200).json({ profiles });
+
+            let whereConditions = nameArray.map(() => 'full_name LIKE ?').join(' AND ');        
+            whereConditions = "(" + whereConditions + ") AND cemetery_num = ?"
+
+            let query = `SELECT * FROM (${query_getProfiles}) AS temp WHERE ${whereConditions} ORDER BY cemeteryname, full_name`;
+           
+            let queryParams = nameArray.map(n => `%${n}%`);
             queryParams.push(`${cemeteryid}`);
 
             const [profiles] = await pool.query(query, queryParams);
 
-            return res.status(200).json({ profiles });
-        } else {
+            return res.status(200).json({ profiles });     
+        }
+        else {
             const profiles = [];
             return res.status(200).json({ profiles });
         }
