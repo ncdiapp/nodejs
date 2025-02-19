@@ -116,7 +116,7 @@ const NavHeaderMenu = async () => {
             </svg>
           </span>
         </Link>
-        <div className="absolute bg-gray-200 megaMenu shadow-header" style={{ width: 'auto' }}>
+        <div className="absolute bg-gray-200 megaMenu" style={{ width: 'auto' }}>
           <div className="p-4">
             <div className="dropdown">
               <div className="dropdown-menu">

@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+:root {
+  --example-font-size: 17px;  
+}
+
+
+
+/* ResponsiveContainer */
+.Ctn-ResponsiveContainer {
+  width: 100%;
+}
+
+.Ctn-ResponsiveContainer .Ctn-HorizontalFlexDiv {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.Ctn-ResponsiveContainer .Ctn-HorizontalFlexDiv > div {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns1.Ctn-HorizontalFlexDiv > div {
+  width: 100%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns2.Ctn-HorizontalFlexDiv > div {
+  width: 50%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns2.Ctn-HorizontalFlexDiv > div.ColSpan2 {
+  width: 100%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns3.Ctn-HorizontalFlexDiv > div {
+  width: 33.3%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns3.Ctn-HorizontalFlexDiv > div.ColSpan2 {
+  width: 66.6%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns3.Ctn-HorizontalFlexDiv > div.ColSpan3 {
+  width: 99.9%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns4.Ctn-HorizontalFlexDiv > div {
+  width: 25%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns4.Ctn-HorizontalFlexDiv > div.ColSpan2 {
+  width: 50%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns4.Ctn-HorizontalFlexDiv > div.ColSpan3 {
+  width: 75%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns4.Ctn-HorizontalFlexDiv > div.ColSpan4 {
+  width: 100%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns5.Ctn-HorizontalFlexDiv > div {
+  width: 20%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns5.Ctn-HorizontalFlexDiv > div.ColSpan2 {
+  width: 40%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns5.Ctn-HorizontalFlexDiv > div.ColSpan3 {
+  width: 60%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns5.Ctn-HorizontalFlexDiv > div.ColSpan4 {
+  width: 80%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns5.Ctn-HorizontalFlexDiv > div.ColSpan5 {
+  width: 100%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns6.Ctn-HorizontalFlexDiv > div {
+  width: 16.6%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns6.Ctn-HorizontalFlexDiv > div.ColSpan2 {
+  width: 33.2%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns6.Ctn-HorizontalFlexDiv > div.ColSpan3 {
+  width: 50%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns6.Ctn-HorizontalFlexDiv > div.ColSpan4 {
+  width: 66.4%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns6.Ctn-HorizontalFlexDiv > div.ColSpan5 {
+  width: 83%;
+}
+
+.Ctn-ResponsiveContainer .TotalColumns6.Ctn-HorizontalFlexDiv > div.ColSpan6 {
+  width: 100%;
+}
+
+
+
+
+/* Dropdwon Menu Begin */
+.menuItem>a:before {
+  position: absolute;
+  bottom: -1.75rem;
+  width: 0;  
+}
+
+:is(menuItem > a):before {
+  right: 0;
+}
+
+.menuItem>a:before {
+  content: "";
+  height: 3px;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.megaMenu {
+  transition: all 0.4s;
+  top: calc(100% + 25px);
+}
+
+.megaMenu ul>li:last-of-type {
+  margin-bottom: 0;
+  border-width: 0;
+  padding-bottom: 0;
+}
+
+.menuItem:hover>a:before {
+  width: 100%;
+}
+
+:is(.menuItem:hover > a):before {
+  right: auto;
+  left: 0;
+}
+
+.menuItem>.megaMenu {
+  visibility: hidden;
+}
+
+.menuItem:hover>.megaMenu {
+  visibility: visible;
+  top: 100%;
+  opacity: 1;
+}
+
+
+.dropdown-submenu {
+  position: relative;
+  width: auto;
+}
+
+.dropdown-submenu .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1000;
+  width: auto;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+  width: auto;
+}
+
+
+/* Dropdwon Menu End */
