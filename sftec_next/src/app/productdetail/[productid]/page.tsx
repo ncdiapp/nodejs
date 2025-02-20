@@ -97,7 +97,7 @@ ${dataModel.responseData_GetAppForm9787_SFTProduct.Description}`;
     skuNo: dataModel.responseData_GetAppForm9787_SFTProduct.ProductId,
     name: dataModel.responseData_GetAppForm9787_SFTProduct.ProductName,
     description: dataModel.responseData_GetAppForm9787_SFTProduct.Description,
-    imgUrl: `${process.env.NEXT_PUBLIC_MGT_BASE_URL}/GetRegularImage.aspx?FileId=${dataModel.responseData_GetAppForm9787_SFTProduct.Photo}&CurrentUserSessionId=6601508d-e7e0-4ed6-892b-879c834676af`,
+    imgUrl: `${process.env.NEXT_PUBLIC_MGT_BASE_URL}GetRegularImage.aspx?FileId=${dataModel.responseData_GetAppForm9787_SFTProduct.Photo}&CurrentUserSessionId=6601508d-e7e0-4ed6-892b-879c834676af`,
     price: dataModel.responseData_GetAppForm9787_SFTProduct.UnitPriceOnDistributorCurrency_30864 || 0,
     //availableQty: undefined,
     //selectedQuantity: 1,

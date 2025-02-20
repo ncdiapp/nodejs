@@ -3,6 +3,7 @@ import AppStripePayment from "@/components/AppStripePayment";
 import Link from "next/link";
 import DistributorIdHiddenInputBox from "@/components/DistributorIdHiddenInputBox";
 import MultiItemSelector from "@/components/MultiItemSelector";
+import Image from "next/image";
 
 export default function PageMarkup({ dataModel }: { dataModel: any }) {
     return (
@@ -211,7 +212,7 @@ export default function PageMarkup({ dataModel }: { dataModel: any }) {
                                         {dataModel.responseData_SftGetOrderById.SftOrderDetail.map((orderItem: any, index:any) => (
                                             <div key={index} className="flex gap-5 py-4 items-center lg:px-3 border-b border-gray-300">
                                                 <div className="flex border rounded-md border-gray-300 w-16 h-16 flex-shrink-0 relative">
-                                                    <img alt="" src={`${process.env.NEXT_PUBLIC_MGT_BASE_URL}GetLatestFile.aspx?FileId=${orderItem.ProductImageId}&CurrentUserSessionId=6601508d-e7e0-4ed6-892b-879c834676af`} className="object-cover bg-gray-300" style={{ position: 'absolute', inset: '0px', boxSizing: 'border-box', padding: '0px', border: 'none', margin: 'auto', display: 'block', width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
+                                                <Image width={800} height={600} alt="" src={`${process.env.NEXT_PUBLIC_MGT_BASE_URL}GetLatestFile.aspx?FileId=${orderItem.ProductImageId}&CurrentUserSessionId=6601508d-e7e0-4ed6-892b-879c834676af`} className="object-cover bg-gray-300" style={{ position: 'absolute', inset: '0px', boxSizing: 'border-box', padding: '0px', border: 'none', margin: 'auto', display: 'block', width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
                                                 </div>
                                                 <h6 className="text-sm pl-3 rtl:pr-3 font-regular text-heading">
                                                     {dataModel.responseData_SftGetOrderById.LookupItems.SftProduct?.find((o:any) => o.Id == orderItem.ProductId)?.Display}

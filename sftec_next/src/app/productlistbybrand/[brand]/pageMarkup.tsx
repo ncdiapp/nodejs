@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PageMarkup({ dataModel }: { dataModel: any }) {
   return (
@@ -32,9 +33,9 @@ export default function PageMarkup({ dataModel }: { dataModel: any }) {
                         <div className="flex mb-3 md:mb-3.5">
                           <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: 'hidden', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '0px', position: 'relative', maxWidth: '100%' }} className="">
                             <span style={{ boxSizing: 'border-box', display: 'block', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '0px', maxWidth: '100%' }} className="">
-                              <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27340%27%20height=%27440%27/%3e" style={{ display: 'block', maxWidth: '100%', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '0px' }} className="" />
+                             <Image width={800} height={600} alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27340%27%20height=%27440%27/%3e" style={{ display: 'block', maxWidth: '100%', width: 'initial', height: 'initial', background: 'none', opacity: '1', border: '0px', margin: '0px', padding: '0px' }} className="object-cover" />
                             </span>
-                            <img alt="SFT-Bar® GFRP Rebar III (G60) 6mm [2]-Length5.85m 40 pieces 101012100" src={`${process.env.NEXT_PUBLIC_MGT_BASE_URL}/GetRegularImage.aspx?FileId=${loopItemObj.Photo}&CurrentUserSessionId=6601508d-e7e0-4ed6-892b-879c834676af`} className="bg-gray-300 object-cover rounded-s-md w-full transition duration-200 ease-in rounded-md group-hover:rounded-b-none" style={{ position: 'absolute', inset: '0px', boxSizing: 'border-box', padding: '0px', border: 'none', margin: 'auto', display: 'block', width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
+                            <Image width={800} height={600} alt="" src={`${process.env.NEXT_PUBLIC_MGT_BASE_URL}GetRegularImage.aspx?FileId=${loopItemObj.Photo}&CurrentUserSessionId=6601508d-e7e0-4ed6-892b-879c834676af`} className="bg-gray-300 object-cover rounded-s-md w-full transition duration-200 ease-in rounded-md group-hover:rounded-b-none" style={{ position: 'absolute', inset: '0px', boxSizing: 'border-box', padding: '0px', border: 'none', margin: 'auto', display: 'block', width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
                             <noscript className="">
                             </noscript>
                           </span>
