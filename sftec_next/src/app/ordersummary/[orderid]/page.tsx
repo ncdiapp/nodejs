@@ -28,7 +28,7 @@ const ordersummary = async ({ params, searchParams }: any) => {
 
 
 
-  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel(params, searchParams, headersList);
+  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel('ordersummary', params, searchParams, headersList);
 
   /* Start of Mgt Get Api Call */
 

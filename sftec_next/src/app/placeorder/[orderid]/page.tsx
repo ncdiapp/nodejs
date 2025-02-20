@@ -30,7 +30,7 @@ const placeorder = async ({ params, searchParams }: any) => {
   const saveDraftOrderBeforePaymentCommandId = process.env.NEXT_PUBLIC_ORDER_APPTRANSACTION__SAVE_DRAFT_ORDER_BEFORE_PAYMENT_COMMANDID;
 
 
-  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel(params, searchParams, headersList);
+  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel('placeorder', params, searchParams, headersList);
   
   /* Start of Mgt Get Api Call */
 

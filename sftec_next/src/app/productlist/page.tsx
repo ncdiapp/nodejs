@@ -25,7 +25,7 @@ const ProductList = async({ params, searchParams }: any) => {
   const dataService = createDataService();
   const headersList = headers();    
 
-  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel(params, searchParams, headersList);
+  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel('ProductList', params, searchParams, headersList);
   
   /* Start of Mgt Get Api Call */
     

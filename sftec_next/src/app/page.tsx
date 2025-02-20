@@ -24,7 +24,7 @@ const Home = async ({ searchParams }: any) => {
   const dataService = createDataService();
   const headersList = headers();    
 
-  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel(null, searchParams, headersList);
+  const dataModel: { [key: string]: any } = appHelper.initializePageDataModel('Home', null, searchParams, headersList);
 
   /* Start of Mgt Get Api Call */
 

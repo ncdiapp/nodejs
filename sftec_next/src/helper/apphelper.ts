@@ -1,8 +1,8 @@
 const appHelper = {
 
-    initializePageDataModel: function (params: any, searchParams: any, headersList: any) {
+    initializePageDataModel: function (pageName:any, params: any, searchParams: any, headersList: any) {
         const dataModel: { [key: string]: any } = {
-            pageName: 'Product Detail',
+            pageName: pageName,
             params: params,
             searchParams: searchParams,
         };
